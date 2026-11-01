@@ -1,0 +1,11 @@
+.git
+.venv
+.localtmp
+.runtime
+__pycache__
+**/__pycache__
+.pytest_cache
+datos/generados
+docs/evidencia
+.env
+*.env

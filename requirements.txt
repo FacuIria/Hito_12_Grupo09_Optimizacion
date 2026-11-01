@@ -1,0 +1,6 @@
+# Versiones de FastAPI/httpx/Pydantic conservadas del Hito 11.
+fastapi==0.115.12
+uvicorn==0.34.2
+pydantic==2.11.4
+httpx==0.28.1
+psutil==7.0.0

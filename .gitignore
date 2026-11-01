@@ -1,0 +1,15 @@
+.venv/
+.localtmp/
+__pycache__/
+.pytest_cache/
+pytest-cache-files-*/
+*.py[cod]
+.env
+*.env
+!config/*.example.env
+.runtime/
+datos/generados/
+*.log
+*.zip
+.coverage
+htmlcov/

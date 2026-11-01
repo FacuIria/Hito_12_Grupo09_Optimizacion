@@ -1,0 +1,55 @@
+name: hito12-g09
+services:
+  influxdb:
+    image: influxdb:3.12.2-core
+    command:
+      - influxdb3
+      - --num-io-threads=2
+      - serve
+      - --node-id=hito12-g09
+      - --object-store=file
+      - --data-dir=/var/lib/influxdb3
+      - --http-bind=0.0.0.0:8181
+      - --without-auth
+      - --exec-mem-pool-size=512MB
+      - --force-snapshot-mem-size=256MB
+      - --datafusion-num-threads=2
+    ports:
+      - "127.0.0.1:18182:8181"
+    volumes:
+      - datos_hito12:/var/lib/influxdb3
+    networks: [laboratorio]
+    cpus: 2.0
+    mem_limit: 2g
+    pids_limit: 256
+    restart: "no"
+    labels:
+      edu.fixture.hito: "12"
+    logging:
+      driver: json-file
+      options: {max-size: "10m", max-file: "2"}
+  api:
+    image: hito12-g09-api:local
+    build: .
+    environment:
+      HITO12_MODE: ${HITO12_MODE:-baseline}
+      INFLUX_URL: http://influxdb:8181
+    ports:
+      - "127.0.0.1:8012:8000"
+    networks: [laboratorio]
+    cpus: 1.0
+    mem_limit: 512m
+    pids_limit: 128
+    restart: "no"
+    labels:
+      edu.fixture.hito: "12"
+    logging:
+      driver: json-file
+      options: {max-size: "10m", max-file: "2"}
+networks:
+  laboratorio:
+    internal: true
+volumes:
+  datos_hito12:
+    labels:
+      edu.fixture.hito: "12"

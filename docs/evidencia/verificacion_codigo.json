@@ -1,0 +1,11 @@
+{
+  "type": "software_verification_not_influxdb_benchmark",
+  "date_utc": "2026-11-01T19:17:32.379959+00:00",
+  "python": "3.13.7",
+  "source_sha256": "ab894760d80e4762cb7fe40cc59ef6fe7eaf2c3349080cdc292266f614c300c1",
+  "command": "python -m pytest -q --basetemp=.runtime/pytest-entrega",
+  "exit_code": 0,
+  "stdout": ".....................................                                    [100%]\n============================== warnings summary ===============================\n.venv\\Lib\\site-packages\\starlette\\testclient.py:37\n  <repositorio>\\.venv\\Lib\\site-packages\\starlette\\testclient.py:37: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.\n    _PortalFactoryType = typing.Callable[[], typing.ContextManager[anyio.abc.BlockingPortal]]\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n37 passed, 1 warning in 9.64s\n",
+  "stderr": "",
+  "influxdb_or_docker_executed": false
+}
