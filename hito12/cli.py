@@ -16,6 +16,7 @@ from hito12.common import (API, EVIDENCE, GENERATED, INFLUX, ROOT, RUNTIME, comm
 from hito12.dataset import config, generate, validate_response
 from hito12.integrity import validate_source
 from hito12.load import run_load, validate_config
+from hito12.profiles import DAEMON_MIN_BYTES, LOAD_CONFIG, PROFILE, START_FREE_MB
 
 
 def client():
@@ -25,14 +26,14 @@ def client():
 
 def resources(cfg, starting=False):
     memory = psutil.virtual_memory()
-    minimum = max(cfg["min_available_memory_mb"], 4096 if starting else 0)
+    minimum = max(cfg["min_available_memory_mb"], START_FREE_MB if starting else 0)
     if memory.available / 2**20 < minimum:
         raise RuntimeError(f"Se requieren {minimum} MiB libres; cerrar aplicaciones y volver a intentar.")
     if shutil.disk_usage(ROOT).free / 2**30 < cfg["min_disk_free_gb"]:
         raise RuntimeError("Espacio de disco insuficiente")
     info = local_docker()
-    if info["MemTotal"] < 4 * 2**30:
-        raise RuntimeError("Asignar al menos 4 GiB de RAM a Docker Desktop.")
+    if info["MemTotal"] < DAEMON_MIN_BYTES:
+        raise RuntimeError(f"RAM del daemon insuficiente para el perfil {PROFILE}.")
     return info
 
 
@@ -50,7 +51,7 @@ def await_api(expected):
 
 
 def up(args):
-    cfg = validate_config(read_json(ROOT / "config/carga.json"))
+    cfg = validate_config(read_json(ROOT / LOAD_CONFIG))
     info = resources(cfg, starting=True)
     # No ocupar puertos de otros procesos. Si ya hay laboratorio, validar su identidad.
     ids = compose("ps", "--all", "--quiet").splitlines()
@@ -63,7 +64,16 @@ def up(args):
             except OSError:
                 raise RuntimeError(f"Puerto {port} ocupado. No se detendrá el proceso que lo utiliza.") from None
     print("Construyendo y levantando únicamente el proyecto hito12-g09...", flush=True)
-    compose("up", "-d", "--build", mode="baseline", timeout=900)
+    compose("build", "api", mode="baseline", timeout=900)
+    resources(cfg, starting=True)
+    compose("pull", "influxdb", timeout=600)
+    resources(cfg, starting=True)
+    compose("up", "-d", "--no-build", mode="baseline", timeout=900)
+    try:
+        resources(cfg)
+    except RuntimeError:
+        compose("stop", "api", "influxdb")
+        raise
     await_api("baseline")
     own = containers()
     write_json(RUNTIME / "environment.json", {"date_utc": now(), "docker": info, "containers": own})
@@ -71,7 +81,8 @@ def up(args):
 
 
 def resume(args):
-    resources(validate_config(read_json(ROOT / "config/carga.json")), starting=True)
+    resources(validate_config(read_json(ROOT / LOAD_CONFIG)), starting=True)
+    containers(require_running=False)
     # start nunca crea ni reconstruye contenedores; ámbito fijado por compose.
     compose("start", timeout=90)
     with client() as http:
@@ -98,7 +109,8 @@ def load_manifest():
 
 
 def prepare(args):
-    resources(validate_config(read_json(ROOT / "config/carga.json")))
+    resources(validate_config(read_json(ROOT / LOAD_CONFIG)))
+    observed = metadata()
     own = containers()
     cfg = config()
     state_path = RUNTIME / "dataset-lock.json"
@@ -122,7 +134,7 @@ def prepare(args):
         if int(existing[0]["total"]) and not state_path.exists():
             raise RuntimeError("Hay datos sin manifiesto local: no se escribirá sobre ellos.")
         write_json(state_path, {"dataset_sha256": digest(cfg), "influx_container": own["influxdb"]["id"]})
-        report = {"date_utc": now(), "dataset": manifest, "attempted_records": 0,
+        report = {"date_utc": now(), "metadata": observed, "dataset": manifest, "attempted_records": 0,
                   "acknowledged_records": 0, "failed_batch_records": 0,
                   "batch_size": 1000, "existing_records": int(existing[0]["total"]),
                   "write_semantics": "Upsert idempotente por tabla, tags y timestamp; sin reintentos automáticos",
@@ -134,14 +146,20 @@ def prepare(args):
                 for line in stream:
                     batch.append(line)
                     if len(batch) == 1000:
+                        resources(validate_config(read_json(ROOT / LOAD_CONFIG)))
                         write_batch(http, batch, report)
                         batch = []
                 if batch:
+                    resources(validate_config(read_json(ROOT / LOAD_CONFIG)))
                     write_batch(http, batch, report)
             integrity = validate_source(http, manifest)
             report["integrity"] = integrity
             report["completed"] = integrity["passed"]
+        except BaseException as exc:
+            report["failure_type"] = type(exc).__name__
+            raise
         finally:
+            report["finished_utc"] = now()
             write_json(run / "preparation.json", report)
         if not report["completed"]:
             raise RuntimeError("La preparación no pasó integridad; no ejecutar la carga.")
@@ -188,7 +206,7 @@ def benchmark(args):
     cfg_path = ROOT / args.config
     cfg = validate_config(read_json(cfg_path))
     if args.mode == "pooled":
-        if args.config == "config/humo.json":
+        if Path(args.config).name in {"humo.json", "humo_compacto.json"}:
             raise RuntimeError("El escenario de humo no acredita la comparación final.")
     resources(cfg)
     manifest = load_manifest()
@@ -208,6 +226,12 @@ def benchmark(args):
         if (baseline["metadata"]["containers"]["influxdb"]["id"] != before["containers"]["influxdb"]["id"] or
                 baseline["metadata"]["containers"]["api"]["image_id"] != before["containers"]["api"]["image_id"]):
             raise RuntimeError("Cambió el motor o la imagen API; medir otra línea base.")
+        # Rechazar condiciones incompatibles antes de cambiar modo o emitir carga.
+        from hito12.compare import compatibility
+        candidate = dict(baseline, mode="pooled", metadata=before)
+        issues = compatibility(baseline, candidate)
+        if issues:
+            raise RuntimeError("Preflight de comparación rechazado: " + "; ".join(issues))
     experiment = new_directory(mode)
     report = {"schema_version": 1, "mode": mode, "completed": False, "config": cfg,
               "config_sha256": digest(cfg), "dataset_sha256": manifest["raw_sha256"],
@@ -294,13 +318,14 @@ def check_integrity(args):
 
 def stop(args):
     local_docker()
+    containers(require_running=False)
     # stop no borra contenedores, redes ni datos; proyecto y servicios explícitos.
     compose("stop", "api", "influxdb", timeout=60)
     print("Solo se detuvo Hito 12. Volumen, resultados y Hito 11 se conservan.")
 
 
 def doctor(args):
-    report = {"date_utc": now(), "python": sys.version.split()[0],
+    report = {"date_utc": now(), "profile": PROFILE, "python": sys.version.split()[0],
               "cpu_logical": psutil.cpu_count(), "ram_total_gib": round(psutil.virtual_memory().total / 2**30, 2),
               "ram_available_gib": round(psutil.virtual_memory().available / 2**30, 2),
               "disk_free_gib": round(shutil.disk_usage(ROOT).free / 2**30, 2)}
@@ -323,7 +348,7 @@ def main(argv=None):
     gen.set_defaults(func=lambda _: print(f"Generados {generate()['rows']} registros; no se escribieron en InfluxDB."))
     run = sub.add_parser("run")
     run.add_argument("--mode", choices=["baseline", "pooled"], required=True)
-    run.add_argument("--config", default="config/carga.json")
+    run.add_argument("--config", default=LOAD_CONFIG)
     run.add_argument("--baseline")
     run.add_argument("--hypothesis")
     run.add_argument("--evidence")

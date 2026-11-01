@@ -4,6 +4,8 @@ Laboratorio del Fixture Mundial 2030 preparado para ejecutarse en una notebook c
 
 **Estado:** implementación y verificaciones locales preparadas. Las pruebas de carga contra InfluxDB, la comparación de rendimiento y la conclusión experimental están **pendientes de ejecución en la notebook**. Los tests con dobles de prueba no constituyen evidencia de rendimiento del motor. Ver [verificación local](docs/verificacion_local.md) y [matriz de requisitos](docs/matriz_requisitos.md).
 
+Para equipos de **8 GiB** se incluye un [perfil compacto aislado](docs/perfil_compacto.md), con contenedores limitados a 960 MiB en total y un dataset de 4.320 registros. Sus condiciones, comandos y límites de interpretación difieren del escenario estándar descrito debajo. No mezclar perfiles en una comparación.
+
 ## Qué incluye
 
 - API de estadísticas derivada del código de Hito 11, con consulta original conservada.
@@ -77,6 +79,8 @@ Get-Content (Join-Path $base 'trial_01\resources.json')
 
 Los percentiles finales excluyen calentamiento y rampa. Si hay falta de memoria, CPU sostenida, respuestas incorrectas o demasiados errores, el ensayo se interrumpe y conserva su evidencia. No bajar las protecciones para forzar una ejecución. Ver [entorno y diagnóstico](docs/entorno_y_diagnostico.md).
 
+El escenario corto programa 240 solicitudes en sostenimiento por repetición: su p99 depende de muy pocas observaciones. Si el humo y el escenario corto terminan estables y el entorno tiene recursos, se puede usar `config/carga_extendida.json`: conserva tasa y concurrencia, con 150 s de sostenimiento (1.200 solicitudes previstas por repetición). Para esa línea base usar `.\scripts\ejecutar_carga.ps1 -Modo baseline -Configuracion config/carga_extendida.json`; para su candidata, `.\scripts\ejecutar_carga.ps1 -Modo pooled -Configuracion config/carga_extendida.json -LineaBase $base -Hipotesis $hipotesis -Evidencia $evidencia`, siguiendo el registro de hipótesis del paso 3. No comparar la base corta con la candidata extendida. El escenario extendido es opcional y no está medido; más muestras no garantizan significación estadística.
+
 ### 3. Registrar la hipótesis y ejecutar la candidata
 
 Revisar la línea base antes de atribuir el costo al establecimiento de conexiones. Comparar latencia del cliente, API, llamada al motor y recursos. El tiempo de dependencia incluye transporte, espera y consulta: no es tiempo SQL puro. Ver [hipótesis y optimización](docs/hipotesis_y_optimizacion.md).
@@ -120,3 +124,14 @@ Completar [conclusiones](docs/conclusiones.md) y [matriz de requisitos](docs/mat
 | [Requisitos](docs/matriz_requisitos.md) | Cobertura preparada y comprobación pendiente |
 
 Los comandos equivalentes multiplataforma están disponibles mediante `python -m hito12.cli --help`. El despliegue real en Docker no se ha ejecutado en el entorno de preparación.
+
+En macOS/Linux, con Python 3.13 disponible:
+
+```bash
+python3.13 -m venv .venv
+.venv/bin/python -m pip install -r requirements-dev-lock.txt
+.venv/bin/python -m pytest -q
+.venv/bin/python -m hito12.cli doctor
+```
+
+La CLI ofrece `up`, `prepare`, `integrity`, `run` y `stop` en el mismo orden que los scripts de Windows. Los controles de recursos e identidad son comunes a ambas plataformas. En un equipo de 8 GiB, asignar RAM a Docker no aumenta la RAM física disponible: si el diagnóstico informa menos de 4 GiB libres en el host, no iniciar el laboratorio ni bajar el umbral.

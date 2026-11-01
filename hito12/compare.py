@@ -19,7 +19,7 @@ def compatibility(base, optimized):
     for key in ("config", "dataset_sha256", "dataset_config", "dataset_records"):
         if base.get(key) != optimized.get(key):
             issues.append("Diferencia de " + key)
-    for key in ("source_sha256", "machine_id_sha256", "platform", "python", "logical_cpus", "memory_total_bytes", "docker", "versions"):
+    for key in ("profile", "source_sha256", "machine_id_sha256", "platform", "python", "logical_cpus", "memory_total_bytes", "docker", "versions"):
         if base["metadata"].get(key) != optimized["metadata"].get(key):
             issues.append("Entorno distinto: " + key)
     for service in ("api", "influxdb"):
@@ -59,6 +59,8 @@ def compare(baseline_path, optimized_path):
         ("Latencia p95", "latency_ms.p95", "ms"),
         ("Latencia p99", "latency_ms.p99", "ms"),
         ("Latencia media", "latency_ms.mean", "ms"),
+        ("Latencia exitosa p95", "success_latency_ms.p95", "ms"),
+        ("Latencia exitosa p99", "success_latency_ms.p99", "ms"),
         ("API p95", "api_ms.p95", "ms"),
         ("Llamada al motor p95", "dependency_ms.p95", "ms"),
         ("Throughput exitoso", "throughput_success_per_second", "op/s"),
@@ -87,6 +89,8 @@ def compare(baseline_path, optimized_path):
         warnings.append("Hubo errores: comparar tipos y latencias exitosas; una respuesta de error rápida puede reducir percentiles.")
     if len(base["trials"]) < 3:
         warnings.append("Menos de tres repeticiones: resultado exploratorio; repetir el escenario final.")
+    if any(t["load"]["steady"]["successful"] < 1000 for e in (base, optimized) for t in e["trials"]):
+        warnings.append("Menos de 1000 respuestas exitosas en alguna repetición: el 1% superior contiene menos de 10 observaciones; interpretar p99 con cautela. Este umbral es orientativo, no una garantía estadística.")
     warnings.append("Tasa de llegada acotada: el throughput observado no demuestra capacidad máxima.")
     warnings.append("Orden baseline→pooled; cachés del motor, carga externa y deriva térmica pueden influir.")
     output = optimized_path.parent

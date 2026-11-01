@@ -5,6 +5,7 @@ from collections import defaultdict
 from datetime import datetime, timedelta, timezone
 
 from hito12.common import DATABASE, GENERATED, ROOT, digest, read_json, write_json
+from hito12.profiles import DATASET_CONFIG
 
 RESOLUTIONS = {"1m": 60, "5m": 300, "15m": 900, "1h": 3600}
 MEASURES = ("posesion_pct", "pases_completados_total", "tiros_intervalo", "recuperaciones_intervalo")
@@ -24,7 +25,7 @@ def iso(value):
 
 
 def config():
-    cfg = read_json(ROOT / "config/dataset.json")
+    cfg = read_json(ROOT / DATASET_CONFIG)
     if (cfg["database"] != DATABASE or cfg["measurement"] != "estadisticas_equipo" or
             not 4 <= cfg["matches"] <= 96 or not 1 <= cfg["minutes"] <= 120 or
             cfg["step_seconds"] not in (1, 5, 10, 30, 60)):

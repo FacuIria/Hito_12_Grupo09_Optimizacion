@@ -43,6 +43,19 @@ def test_remote_docker_refused_before_any_daemon_call(monkeypatch):
         local_docker()
 
 
+def test_stopped_own_containers_can_be_checked_but_foreign_mounts_are_refused(monkeypatch):
+    items = {'api': inspection('api'), 'influxdb': inspection('influxdb')}
+    items['api']['State']['Running'] = False
+    monkeypatch.setattr('hito12.common.compose', lambda *a: 'api\ninfluxdb')
+    monkeypatch.setattr('hito12.common.command', lambda args: json.dumps([items[args[-1]]]))
+    assert set(containers(require_running=False)) == {'api', 'influxdb'}
+    with pytest.raises(RuntimeError, match='detenido'):
+        containers()
+    items['influxdb']['Mounts'][0]['Name'] = 'original-volume'
+    with pytest.raises(RuntimeError, match='ajeno'):
+        containers(require_running=False)
+
+
 def test_build_identity_covers_modules_and_normalizes_newlines(tmp_path):
     from app.build_info import build_info, text_hash
     info = build_info()

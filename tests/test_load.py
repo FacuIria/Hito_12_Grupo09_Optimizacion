@@ -22,6 +22,17 @@ def test_latency_distribution_and_no_samples():
     assert distribution([])['p99'] is None
 
 
+def test_extended_plan_increases_samples_without_increasing_rate_or_concurrency():
+    short = read_json(ROOT / 'config/carga.json')
+    extended = read_json(ROOT / 'config/carga_extendida.json')
+    assert extended['concurrency'] == short['concurrency'] == 4
+    assert extended['rate_per_second'] == short['rate_per_second'] == 8
+    plan = schedule(extended, {'counts': {f'P{i:03d}': 1 for i in range(1, 25)}})
+    steady = [r for r in plan if r['phase'] == 'steady']
+    assert len(steady) == 1200
+    assert steady[-1]['offset_s'] < 165
+
+
 def test_missing_arrivals_not_counted_as_success_and_warmup_excluded():
     cfg = read_json(ROOT / 'config/carga.json')
     row = {'phase': 'steady', 'kind': 'ok', 'latency_ms': 12., 'finished_s': 20.,

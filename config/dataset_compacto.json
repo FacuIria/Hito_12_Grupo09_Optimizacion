@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "seed": 1209,
+  "matches": 6,
+  "minutes": 30,
+  "step_seconds": 5,
+  "start_utc": "2030-06-08T19:00:00Z",
+  "database": "hito12_g09",
+  "measurement": "estadisticas_equipo"
+}

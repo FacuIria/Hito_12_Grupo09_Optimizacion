@@ -1,0 +1,94 @@
+{
+  "type": "software_verification_and_safety_preflight_not_influxdb_benchmark",
+  "date_utc": "2026-11-01T23:23:25.349643+00:00",
+  "python": "3.13.18",
+  "platform": "macOS-26.6.1-arm64-arm-64bit-Mach-O",
+  "commit": "0aac75494f83efa9bfebaadd755b4eaf2a7de9e4",
+  "code_dirty": true,
+  "source_sha256": "2b3e835d3f8770a66ee45e1faf3c7091e03755acfe7591ef36fdf510150a3f15",
+  "checks": [
+    {
+      "command": "<repositorio>/.venv/bin/python -m pytest -q --basetemp=.runtime/pytest-auditoria",
+      "exit_code": 0,
+      "stdout": "............................................                             [100%]\n=============================== warnings summary ===============================\n.venv/lib/python3.13/site-packages/starlette/testclient.py:37\n  <repositorio>/.venv/lib/python3.13/site-packages/starlette/testclient.py:37: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.\n    _PortalFactoryType = typing.Callable[[], typing.ContextManager[anyio.abc.BlockingPortal]]\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n44 passed, 1 warning in 8.82s\n",
+      "stderr": ""
+    },
+    {
+      "command": "<repositorio>/.venv/bin/python -m compileall -q app hito12 tests",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": "docker compose --project-name hito12-g09 --file compose.yaml config --quiet",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": "<repositorio>/.venv/bin/python -m hito12.cli --help",
+      "exit_code": 0,
+      "stdout": "usage: cli.py [-h]\n              {doctor,up,resume,prepare,integrity,stop,generate,run,compare} ...\n\nEntrada única: python -m hito12.cli --help. No admite destinos arbitrarios.\n\npositional arguments:\n  {doctor,up,resume,prepare,integrity,stop,generate,run,compare}\n\noptions:\n  -h, --help            show this help message and exit\n",
+      "stderr": ""
+    },
+    {
+      "command": "<repositorio>/.venv/bin/python -m hito12.cli doctor",
+      "exit_code": 0,
+      "stdout": "{\n  \"date_utc\": \"2026-11-01T23:23:34.704154+00:00\",\n  \"python\": \"3.13.18\",\n  \"cpu_logical\": 8,\n  \"ram_total_gib\": 8.0,\n  \"ram_available_gib\": 1.18,\n  \"disk_free_gib\": 208.87,\n  \"docker\": {\n    \"ServerVersion\": \"29.7.2\",\n    \"OSType\": \"linux\",\n    \"Architecture\": \"aarch64\",\n    \"NCPU\": 8,\n    \"MemTotal\": 5155180544\n  },\n  \"compose_version\": \"5.4.0\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": "<repositorio>/.venv/bin/python -m hito12.cli up",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "ERROR: Se requieren 4096 MiB libres; cerrar aplicaciones y volver a intentar.\n"
+    },
+    {
+      "command": "git diff --check",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "influxdb_or_docker_workload_executed": false,
+  "preflight": {
+    "date_utc": "2026-11-01T23:23:34.704154+00:00",
+    "python": "3.13.18",
+    "cpu_logical": 8,
+    "ram_total_gib": 8.0,
+    "ram_available_gib": 1.18,
+    "disk_free_gib": 208.87,
+    "docker": {
+      "ServerVersion": "29.7.2",
+      "OSType": "linux",
+      "Architecture": "aarch64",
+      "NCPU": 8,
+      "MemTotal": 5155180544
+    },
+    "compose_version": "5.4.0"
+  },
+  "generated_dataset": {
+    "rows": 51840,
+    "raw_sha256": "8dc331c0575a6495ed768a97cf835478016b3417a05837933146d5be3ce2be87",
+    "written_to_influxdb": false
+  },
+  "finished_utc": "2026-11-01T23:23:35.644606+00:00",
+  "registry_manifest_checks": {
+    "date_utc": "2026-11-01T23:24:40.037109+00:00",
+    "method": "docker manifest inspect; sin descarga de capas ni inicio de servicios",
+    "images": [
+      {
+        "image": "influxdb:3.12.2-core",
+        "exit_code": 0,
+        "linux_arm64_digest": "sha256:a076fdcb0191164515cda3d23b25a7341a010645258e55dca4f8963ec78acf3b",
+        "linux_amd64_digest": "sha256:d8736a38ee20b046ec40b6ff6a1d2f8fb1448a11e5f626219995e79819fe9dd9"
+      },
+      {
+        "image": "python:3.13.3-slim",
+        "exit_code": 0,
+        "linux_arm64_digest": "sha256:d9103b5a50aa5d33623dc2abaf09233f8dd8c678c6e25e565618f3575f3fd416",
+        "linux_amd64_digest": "sha256:5cc3361b5df0f3af709d5bb6c387361d9b2262ea4155dae6c701a2f66eb73b67"
+      }
+    ]
+  }
+}

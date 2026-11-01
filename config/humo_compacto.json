@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "name": "humo_no_utilizar_como_comparacion_final_compacto",
+  "seed": 1209,
+  "concurrency": 1,
+  "rate_per_second": 1,
+  "warmup_seconds": 1,
+  "ramp_seconds": 2,
+  "steady_seconds": 5,
+  "timeout_seconds": 5,
+  "cooldown_seconds": 1,
+  "repetitions": 1,
+  "hot_matches": 4,
+  "hot_probability": 0.8,
+  "resolutions": [
+    "1m",
+    "5m",
+    "15m",
+    "1h"
+  ],
+  "max_error_fraction": 0.05,
+  "error_min_samples": 5,
+  "min_available_memory_mb": 1024,
+  "max_host_cpu_percent": 85,
+  "max_cpu_samples": 2,
+  "max_container_memory_percent": 85,
+  "monitor_interval_seconds": 1,
+  "min_disk_free_gb": 5
+}

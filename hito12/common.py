@@ -6,17 +6,18 @@ import platform
 import subprocess
 from datetime import datetime, timezone
 from pathlib import Path
+from hito12.profiles import COMPACT, COMPOSE_FILE, LIMITS, PROFILE, VOLUME
 
 ROOT = Path(__file__).resolve().parents[1]
-RUNTIME = ROOT / ".runtime"
-GENERATED = ROOT / "datos" / "generados"
+RUNTIME = ROOT / ".runtime" / ("compacto" if COMPACT else "")
+GENERATED = ROOT / "datos" / "generados" / ("compacto" if COMPACT else "")
 EVIDENCE = ROOT / "docs" / "evidencia"
 API = "http://127.0.0.1:8012"
 INFLUX = "http://127.0.0.1:18182"
 DATABASE = "hito12_g09"
 PROJECT = "hito12-g09"
 SOURCE_PATHS = ["app", "hito12", "scripts", "config", "tests", "Dockerfile",
-                "compose.yaml", "requirements.txt", "requirements-dev.txt",
+                "compose.yaml", "compose.compacto.yaml", "requirements.txt", "requirements-dev.txt",
                 "requirements-lock.txt", "requirements-dev-lock.txt", ".dockerignore"]
 
 
@@ -67,7 +68,7 @@ def compose(*args, mode="baseline", timeout=60):
     env = dict(os.environ)
     env["HITO12_MODE"] = mode
     return command(["docker", "compose", "--project-name", PROJECT,
-                    "--file", str(ROOT / "compose.yaml"), *args], timeout=timeout, env=env)
+                    "--file", str(ROOT / COMPOSE_FILE), *args], timeout=timeout, env=env)
 
 
 def local_docker():
@@ -84,7 +85,7 @@ def local_docker():
     return {k: info.get(k) for k in ("ServerVersion", "OSType", "Architecture", "NCPU", "MemTotal")}
 
 
-def containers():
+def containers(*, require_running=True):
     """Solo IDs del proyecto propio; no inspeccionar ni operar otros contenedores."""
     ids = compose("ps", "--all", "--quiet").splitlines()
     if not ids:
@@ -97,7 +98,7 @@ def containers():
         if (labels.get("com.docker.compose.project") != PROJECT or
                 labels.get("edu.fixture.hito") != "12" or service not in {"api", "influxdb"}):
             raise RuntimeError("Recurso sin identidad de laboratorio Hito 12.")
-        if not item["State"]["Running"] or item["State"].get("OOMKilled"):
+        if require_running and (not item["State"]["Running"] or item["State"].get("OOMKilled")):
             raise RuntimeError(f"Servicio {service} detenido o sin memoria.")
         networks = item["NetworkSettings"]["Networks"]
         if set(networks) != {PROJECT + "_laboratorio"}:
@@ -107,12 +108,11 @@ def containers():
         published = [v for values in bindings.values() for v in (values or [])]
         if published != [{"HostIp": "127.0.0.1", "HostPort": expected_port}]:
             raise RuntimeError("Publicación de puertos inesperada.")
-        expected_memory = 512 * 2**20 if service == "api" else 2 * 2**30
-        expected_cpu = 10**9 if service == "api" else 2 * 10**9
+        expected_memory, expected_cpu = LIMITS[service]
         if item["HostConfig"]["Memory"] != expected_memory or item["HostConfig"]["NanoCpus"] != expected_cpu:
             raise RuntimeError("Los límites efectivos de CPU/RAM no coinciden con el laboratorio.")
         for mount in item.get("Mounts", []):
-            if mount.get("Type") != "volume" or mount.get("Name") != PROJECT + "_datos_hito12":
+            if mount.get("Type") != "volume" or mount.get("Name") != VOLUME:
                 raise RuntimeError("Montaje ajeno al volumen propio.")
         result[service] = {
             "id": cid, "image_id": item["Image"], "image_tag": item["Config"]["Image"],
@@ -145,7 +145,7 @@ def metadata(require_commit=True):
     expected = build_info()
     if any(versions["api"][key] != expected[key] for key in ("app_files_sha256", "requirements_sha256")):
         raise RuntimeError("La API desplegada no coincide con el código/dependencias actuales. Reconstruir solo Hito 12 antes de una nueva línea base.")
-    return {"date_utc": now(), "commit": commit, "source_sha256": source_fingerprint(),
+    return {"date_utc": now(), "profile": PROFILE, "commit": commit, "source_sha256": source_fingerprint(),
             "code_dirty": bool(status), "platform": platform.platform(),
             "python": platform.python_version(), "logical_cpus": psutil.cpu_count(),
             "memory_total_bytes": psutil.virtual_memory().total,

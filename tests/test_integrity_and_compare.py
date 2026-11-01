@@ -72,6 +72,7 @@ def test_comparison_writes_tables_with_real_input_structure(tmp_path):
         value = 10. if mode == 'baseline' else 8.
         exp['trials'][0]['load']['steady'] = {
             'latency_ms': {'p50': value, 'p90': value, 'p95': value, 'p99': value, 'mean': value},
+            'success_latency_ms': {'p95': value, 'p99': value},
             'api_ms': {'p95': value}, 'dependency_ms': {'p95': value},
             'throughput_success_per_second': 1., 'completed': 10, 'successful': 10, 'errors': 0,
             'error_fraction': 0., 'not_sent': 0, 'dispatch_lag_ms': {'p95': 1.},
@@ -85,3 +86,4 @@ def test_comparison_writes_tables_with_real_input_structure(tmp_path):
     assert rows[0]['change_percent'] == pytest.approx(-20)
     assert (tmp_path / 'pooled/comparison.csv').is_file()
     assert 'Decisión del equipo' in (tmp_path / 'pooled/comparison.md').read_text(encoding='utf-8')
+    assert 'Menos de 1000' in (tmp_path / 'pooled/comparison.md').read_text(encoding='utf-8')
