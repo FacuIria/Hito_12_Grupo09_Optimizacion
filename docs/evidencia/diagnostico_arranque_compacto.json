@@ -1,0 +1,26 @@
+{
+  "date_utc": "2026-11-02T02:58:16.327736+00:00",
+  "commit": "da28d1a",
+  "type": "real_startup_failure_not_load_test",
+  "profile": "compacto",
+  "docker_version": "29.7.2",
+  "api_running": true,
+  "influxdb_running": true,
+  "identity_http": "connection_refused",
+  "api_portbindings_configured": {
+    "8000/tcp": [
+      {
+        "HostIp": "127.0.0.1",
+        "HostPort": "8012"
+      }
+    ]
+  },
+  "api_networksettings_ports_observed": {
+    "8000/tcp": []
+  },
+  "cli_up_exit_code": 1,
+  "cli_up_error": "La API no inició",
+  "dataset_written": false,
+  "load_executed": false,
+  "resolution": "Agregar bridge propio de acceso; conservar puertos exclusivamente loopback. Repetir validaciones y arranque antes de preparar datos."
+}

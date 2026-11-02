@@ -101,7 +101,7 @@ def containers(*, require_running=True):
         if require_running and (not item["State"]["Running"] or item["State"].get("OOMKilled")):
             raise RuntimeError(f"Servicio {service} detenido o sin memoria.")
         networks = item["NetworkSettings"]["Networks"]
-        if set(networks) != {PROJECT + "_laboratorio"}:
+        if set(networks) != {PROJECT + "_laboratorio", PROJECT + "_acceso"}:
             raise RuntimeError("Red ajena al laboratorio: se cancela la operación.")
         expected_port = "8012" if service == "api" else "18182"
         bindings = item["HostConfig"]["PortBindings"]

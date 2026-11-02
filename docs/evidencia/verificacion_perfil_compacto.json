@@ -1,0 +1,12 @@
+{
+  "type": "software_verification_not_engine_benchmark",
+  "date_utc": "2026-11-02T00:00:27.296600+00:00",
+  "commit": "da28d1a61423e70fe53ae1a56af5741793d2dec5",
+  "python": "3.13.18",
+  "source_sha256": "50164c7b314016edb6944b55043130fc7d8a0e25e5a56c6a4c9df2e5977fa9d6",
+  "command": "python -m pytest -q --basetemp=.runtime/pytest-final-compacto",
+  "exit_code": 0,
+  "stdout": "...............................................                          [100%]\n=============================== warnings summary ===============================\n.venv/lib/python3.13/site-packages/starlette/testclient.py:37\n  <repositorio>/.venv/lib/python3.13/site-packages/starlette/testclient.py:37: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.\n    _PortalFactoryType = typing.Callable[[], typing.ContextManager[anyio.abc.BlockingPortal]]\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n47 passed, 1 warning in 8.82s\n",
+  "stderr": "",
+  "engine_workload_executed": false
+}

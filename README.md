@@ -1,5 +1,7 @@
 # Hito 12 — Grupo 09 — Pruebas de carga y optimización
 
+**Para continuar el trabajo en otra máquina:** leer primero [el estado de traspaso](docs/TRASPASO.md), con lo ejecutado y lo pendiente.
+
 Laboratorio del Fixture Mundial 2030 preparado para ejecutarse en una notebook con Windows, Python 3.13 y Docker Desktop (contenedores Linux). Se mide el endpoint de estadísticas de Hito 11 en una copia aislada con InfluxDB 3. La variante candidata reutiliza conexiones HTTP; su beneficio debe comprobarse con mediciones.
 
 **Estado:** implementación y verificaciones locales preparadas. Las pruebas de carga contra InfluxDB, la comparación de rendimiento y la conclusión experimental están **pendientes de ejecución en la notebook**. Los tests con dobles de prueba no constituyen evidencia de rendimiento del motor. Ver [verificación local](docs/verificacion_local.md) y [matriz de requisitos](docs/matriz_requisitos.md).

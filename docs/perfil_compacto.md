@@ -40,7 +40,7 @@ $evidencia = Join-Path $base 'trial_01\load.json'
 
 En macOS/Linux: `export HITO12_PROFILE=compacto` y usar `.venv/bin/python -m hito12.cli` con `doctor`, `up`, `prepare`, `integrity`, `run --mode baseline --config config/humo_compacto.json`, `run --mode baseline`, `run --mode pooled --baseline RUTA --hypothesis TEXTO --evidence ARCHIVO`, `integrity` y `stop`.
 
-Compose: `compose.compacto.yaml`; volumen: `hito12-g09_datos_hito12_compacto`; datos: `datos/generados/compacto/`; estado: `.runtime/compacto/`. Conserva el proyecto exclusivo Hito 12, la red interna y puertos loopback 8012/18182. No comparte datos con el perfil estándar ni con Hito 11. La identidad, límites y volumen efectivos se validan antes de escribir o medir. El código/configuración debe estar en un commit antes de preparar datos.
+Compose: `compose.compacto.yaml`; volumen: `hito12-g09_datos_hito12_compacto`; datos: `datos/generados/compacto/`; estado: `.runtime/compacto/`. Conserva el proyecto exclusivo Hito 12 y la red interna, y añade una red bridge propia `hito12-g09_acceso` para publicar puertos loopback 8012/18182 en Docker Desktop. Esta segunda red permite también salida de los servicios; el laboratorio no queda aislado de Internet. No comparte redes ni datos con Hito 11. La identidad, límites y volumen efectivos se validan antes de escribir o medir. El código/configuración debe estar en un commit antes de preparar datos.
 
 ## Interpretación
 

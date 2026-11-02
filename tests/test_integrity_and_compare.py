@@ -59,7 +59,7 @@ def test_compose_isolated_bounded_without_original_services():
         assert service['mem_limit']
         assert float(service['cpus']) <= 2
         assert all(p.startswith('127.0.0.1:') for p in service['ports'])
-        assert service['networks'] == ['laboratorio']
+        assert service['networks'] == ['laboratorio', 'acceso']
         assert service['labels']['edu.fixture.hito'] == '12'
     assert cfg['services']['influxdb']['volumes'] == ['datos_hito12:/var/lib/influxdb3']
 

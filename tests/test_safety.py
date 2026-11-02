@@ -10,7 +10,7 @@ def inspection(service):
     return {'Config': {'Image': 'image', 'Labels': {'com.docker.compose.project': 'hito12-g09',
                 'com.docker.compose.service': service, 'edu.fixture.hito': '12'}},
             'State': {'Running': True, 'OOMKilled': False},
-            'NetworkSettings': {'Networks': {'hito12-g09_laboratorio': {}}},
+            'NetworkSettings': {'Networks': {'hito12-g09_laboratorio': {}, 'hito12-g09_acceso': {}}},
             'HostConfig': {'PortBindings': {'port/tcp': [{'HostIp': '127.0.0.1',
                           'HostPort': '8012' if service == 'api' else '18182'}]},
                           'Memory': 512*2**20 if service == 'api' else 2*2**30,

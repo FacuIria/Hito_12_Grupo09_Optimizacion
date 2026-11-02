@@ -2,7 +2,9 @@
 
 ## Aislamiento
 
-Proyecto fijo `hito12-g09`; red interna `hito12-g09_laboratorio`; volumen `hito12-g09_datos_hito12`. Servicios `api` e `influxdb` con etiqueta `edu.fixture.hito=12`. No se usan redes externas ni montajes de carpetas con datos previos. El controlador valida identidad, puertos, red, montajes y límites efectivos antes de cargar/medir.
+Proyecto fijo `hito12-g09`; red interna `hito12-g09_laboratorio` y bridge propio `hito12-g09_acceso`; volumen estándar `hito12-g09_datos_hito12`. Servicios `api` e `influxdb` con etiqueta `edu.fixture.hito=12`. No se usan redes de otros proyectos ni montajes de carpetas con datos previos. El controlador valida identidad, puertos, las dos redes esperadas, montajes y límites efectivos antes de cargar/medir. El perfil compacto usa otro volumen y límites, detallados en [su procedimiento](perfil_compacto.md).
+
+El primer arranque real en Docker Desktop 29.7.2 mostró servicios iniciados pero puertos efectivos vacíos al usar solo la red interna. Se añadió el bridge de acceso y se conservó cada publicación en `127.0.0.1`. La red de acceso permite egress; no se afirma aislamiento total de Internet. Referencia del modelo de red: [Docker: networking en Compose](https://docs.docker.com/compose/how-tos/networking/). El intento fallido se conserva en `evidencia/diagnostico_arranque_compacto.json`.
 
 API: puerto local 8012, 1 CPU, 512 MiB. Motor: puerto local 18182, 2 CPU, 2 GiB. InfluxDB tiene dos threads de I/O, dos de DataFusion, pool de ejecución de 512 MB y umbral de snapshot de 256 MB. Docker limita el proceso completo. Las opciones de memoria internas no equivalen al consumo total del motor.
 

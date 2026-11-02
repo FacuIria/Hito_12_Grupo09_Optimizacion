@@ -18,7 +18,7 @@ services:
       - "127.0.0.1:18182:8181"
     volumes:
       - datos_hito12:/var/lib/influxdb3
-    networks: [laboratorio]
+    networks: [laboratorio, acceso]
     cpus: 2.0
     mem_limit: 2g
     pids_limit: 256
@@ -36,7 +36,7 @@ services:
       INFLUX_URL: http://influxdb:8181
     ports:
       - "127.0.0.1:8012:8000"
-    networks: [laboratorio]
+    networks: [laboratorio, acceso]
     cpus: 1.0
     mem_limit: 512m
     pids_limit: 128
@@ -49,6 +49,10 @@ services:
 networks:
   laboratorio:
     internal: true
+  acceso:
+    driver: bridge
+    driver_opts:
+      com.docker.network.bridge.host_binding_ipv4: "127.0.0.1"
 volumes:
   datos_hito12:
     labels:
