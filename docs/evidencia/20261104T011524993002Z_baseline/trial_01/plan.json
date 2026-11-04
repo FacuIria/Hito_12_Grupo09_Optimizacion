@@ -1,0 +1,44 @@
+[
+  {
+    "sequence": 0,
+    "offset_s": 0.0,
+    "phase": "warmup",
+    "match": "P005",
+    "resolution": "15m"
+  },
+  {
+    "sequence": 1,
+    "offset_s": 3.0,
+    "phase": "steady",
+    "match": "P003",
+    "resolution": "5m"
+  },
+  {
+    "sequence": 2,
+    "offset_s": 4.0,
+    "phase": "steady",
+    "match": "P003",
+    "resolution": "1h"
+  },
+  {
+    "sequence": 3,
+    "offset_s": 5.0,
+    "phase": "steady",
+    "match": "P001",
+    "resolution": "5m"
+  },
+  {
+    "sequence": 4,
+    "offset_s": 6.0,
+    "phase": "steady",
+    "match": "P004",
+    "resolution": "5m"
+  },
+  {
+    "sequence": 5,
+    "offset_s": 7.0,
+    "phase": "steady",
+    "match": "P002",
+    "resolution": "15m"
+  }
+]

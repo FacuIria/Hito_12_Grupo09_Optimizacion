@@ -1,0 +1,12 @@
+{
+  "before": {
+    "requests": 0,
+    "errors": 0,
+    "dependency_ms_sum": 0.0
+  },
+  "after": {
+    "requests": 6,
+    "errors": 0,
+    "dependency_ms_sum": 252.6541659999566
+  }
+}

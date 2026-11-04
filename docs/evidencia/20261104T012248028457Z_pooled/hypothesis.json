@@ -1,0 +1,7 @@
+{
+  "recorded_utc": "2026-11-04T01:22:48.028901+00:00",
+  "statement": "La dependencia InfluxDB representa aproximadamente el 89% del tiempo de la API. Se plantea que reutilizar conexiones HTTP podria reducir el overhead de comunicacion y mejorar las latencias p95 y p99 sin aumentar los errores.",
+  "baseline_evidence": "docs/evidencia/20261104T011554960995Z_baseline/trial_01/load.json",
+  "evidence_sha256": "14dab7fd3e766b59e00f94ddf7796ca5ab024b013850cb9dae30264c0c551a57",
+  "change": "Cliente httpx persistente con pool máximo de 16 conexiones"
+}

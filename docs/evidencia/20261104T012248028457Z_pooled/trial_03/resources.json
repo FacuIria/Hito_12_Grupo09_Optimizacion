@@ -1,0 +1,350 @@
+[
+  {
+    "elapsed_s": 0.0018022999865934253,
+    "host_cpu_percent": 0.0,
+    "host_available_mb": 4175.796875,
+    "generator_cpu_percent": 0.0,
+    "generator_rss_mb": 52.73046875,
+    "containers": [
+      {
+        "ID": "dd99c90a434b",
+        "Name": "hito12-g09-api-1",
+        "CPUPerc": "2.64%",
+        "MemUsage": "37.8MiB / 512MiB",
+        "MemPerc": "7.38%",
+        "NetIO": "7.45MB / 8.17MB",
+        "BlockIO": "0B / 0B",
+        "PIDs": "2"
+      },
+      {
+        "ID": "7cbb44ded8a3",
+        "Name": "hito12-g09-influxdb-1",
+        "CPUPerc": "14.40%",
+        "MemUsage": "131.7MiB / 2GiB",
+        "MemPerc": "6.43%",
+        "NetIO": "11.7MB / 176MB",
+        "BlockIO": "0B / 0B",
+        "PIDs": "11"
+      }
+    ]
+  },
+  {
+    "elapsed_s": 4.085399000032339,
+    "host_cpu_percent": 9.3,
+    "host_available_mb": 4177.32421875,
+    "generator_cpu_percent": 1.5,
+    "generator_rss_mb": 52.82421875,
+    "containers": [
+      {
+        "ID": "dd99c90a434b",
+        "Name": "hito12-g09-api-1",
+        "CPUPerc": "2.32%",
+        "MemUsage": "37.76MiB / 512MiB",
+        "MemPerc": "7.37%",
+        "NetIO": "7.73MB / 8.49MB",
+        "BlockIO": "0B / 0B",
+        "PIDs": "2"
+      },
+      {
+        "ID": "7cbb44ded8a3",
+        "Name": "hito12-g09-influxdb-1",
+        "CPUPerc": "0.12%",
+        "MemUsage": "130.5MiB / 2GiB",
+        "MemPerc": "6.37%",
+        "NetIO": "11.7MB / 176MB",
+        "BlockIO": "0B / 0B",
+        "PIDs": "11"
+      }
+    ]
+  },
+  {
+    "elapsed_s": 8.149692900013179,
+    "host_cpu_percent": 10.5,
+    "host_available_mb": 4160.34375,
+    "generator_cpu_percent": 1.2,
+    "generator_rss_mb": 52.828125,
+    "containers": [
+      {
+        "ID": "dd99c90a434b",
+        "Name": "hito12-g09-api-1",
+        "CPUPerc": "1.43%",
+        "MemUsage": "37.76MiB / 512MiB",
+        "MemPerc": "7.37%",
+        "NetIO": "7.88MB / 8.65MB",
+        "BlockIO": "0B / 0B",
+        "PIDs": "2"
+      },
+      {
+        "ID": "7cbb44ded8a3",
+        "Name": "hito12-g09-influxdb-1",
+        "CPUPerc": "4.30%",
+        "MemUsage": "129MiB / 2GiB",
+        "MemPerc": "6.30%",
+        "NetIO": "11.7MB / 176MB",
+        "BlockIO": "0B / 0B",
+        "PIDs": "11"
+      }
+    ]
+  },
+  {
+    "elapsed_s": 12.222355599980801,
+    "host_cpu_percent": 10.8,
+    "host_available_mb": 4076.23828125,
+    "generator_cpu_percent": 0.4,
+    "generator_rss_mb": 52.84375,
+    "containers": [
+      {
+        "ID": "dd99c90a434b",
+        "Name": "hito12-g09-api-1",
+        "CPUPerc": "2.15%",
+        "MemUsage": "37.76MiB / 512MiB",
+        "MemPerc": "7.37%",
+        "NetIO": "8.09MB / 8.87MB",
+        "BlockIO": "0B / 0B",
+        "PIDs": "2"
+      },
+      {
+        "ID": "7cbb44ded8a3",
+        "Name": "hito12-g09-influxdb-1",
+        "CPUPerc": "10.99%",
+        "MemUsage": "129MiB / 2GiB",
+        "MemPerc": "6.30%",
+        "NetIO": "11.8MB / 176MB",
+        "BlockIO": "0B / 0B",
+        "PIDs": "11"
+      }
+    ]
+  },
+  {
+    "elapsed_s": 15.289469600014854,
+    "host_cpu_percent": 6.8,
+    "host_available_mb": 4085.44921875,
+    "generator_cpu_percent": 1.5,
+    "generator_rss_mb": 52.84375,
+    "containers": [
+      {
+        "ID": "dd99c90a434b",
+        "Name": "hito12-g09-api-1",
+        "CPUPerc": "2.72%",
+        "MemUsage": "37.69MiB / 512MiB",
+        "MemPerc": "7.36%",
+        "NetIO": "8.39MB / 9.2MB",
+        "BlockIO": "0B / 0B",
+        "PIDs": "2"
+      },
+      {
+        "ID": "7cbb44ded8a3",
+        "Name": "hito12-g09-influxdb-1",
+        "CPUPerc": "15.15%",
+        "MemUsage": "128.1MiB / 2GiB",
+        "MemPerc": "6.26%",
+        "NetIO": "11.8MB / 177MB",
+        "BlockIO": "0B / 0B",
+        "PIDs": "11"
+      }
+    ]
+  },
+  {
+    "elapsed_s": 19.389886800025124,
+    "host_cpu_percent": 11.4,
+    "host_available_mb": 4071.5546875,
+    "generator_cpu_percent": 2.7,
+    "generator_rss_mb": 52.84375,
+    "containers": [
+      {
+        "ID": "dd99c90a434b",
+        "Name": "hito12-g09-api-1",
+        "CPUPerc": "2.58%",
+        "MemUsage": "37.7MiB / 512MiB",
+        "MemPerc": "7.36%",
+        "NetIO": "8.73MB / 9.57MB",
+        "BlockIO": "0B / 0B",
+        "PIDs": "2"
+      },
+      {
+        "ID": "7cbb44ded8a3",
+        "Name": "hito12-g09-influxdb-1",
+        "CPUPerc": "14.73%",
+        "MemUsage": "131.1MiB / 2GiB",
+        "MemPerc": "6.40%",
+        "NetIO": "11.8MB / 177MB",
+        "BlockIO": "0B / 0B",
+        "PIDs": "11"
+      }
+    ]
+  },
+  {
+    "elapsed_s": 23.468731000029948,
+    "host_cpu_percent": 7.7,
+    "host_available_mb": 4065.68359375,
+    "generator_cpu_percent": 0.4,
+    "generator_rss_mb": 52.83203125,
+    "containers": [
+      {
+        "ID": "dd99c90a434b",
+        "Name": "hito12-g09-api-1",
+        "CPUPerc": "2.85%",
+        "MemUsage": "37.7MiB / 512MiB",
+        "MemPerc": "7.36%",
+        "NetIO": "9.1MB / 9.98MB",
+        "BlockIO": "0B / 0B",
+        "PIDs": "2"
+      },
+      {
+        "ID": "7cbb44ded8a3",
+        "Name": "hito12-g09-influxdb-1",
+        "CPUPerc": "14.83%",
+        "MemUsage": "127.6MiB / 2GiB",
+        "MemPerc": "6.23%",
+        "NetIO": "11.9MB / 177MB",
+        "BlockIO": "0B / 0B",
+        "PIDs": "11"
+      }
+    ]
+  },
+  {
+    "elapsed_s": 26.552258600015193,
+    "host_cpu_percent": 8.8,
+    "host_available_mb": 4011.58984375,
+    "generator_cpu_percent": 2.5,
+    "generator_rss_mb": 52.83203125,
+    "containers": [
+      {
+        "ID": "dd99c90a434b",
+        "Name": "hito12-g09-api-1",
+        "CPUPerc": "3.07%",
+        "MemUsage": "37.82MiB / 512MiB",
+        "MemPerc": "7.39%",
+        "NetIO": "9.57MB / 10.5MB",
+        "BlockIO": "0B / 0B",
+        "PIDs": "2"
+      },
+      {
+        "ID": "7cbb44ded8a3",
+        "Name": "hito12-g09-influxdb-1",
+        "CPUPerc": "16.28%",
+        "MemUsage": "131.1MiB / 2GiB",
+        "MemPerc": "6.40%",
+        "NetIO": "11.9MB / 178MB",
+        "BlockIO": "0B / 0B",
+        "PIDs": "11"
+      }
+    ]
+  },
+  {
+    "elapsed_s": 29.931904199998826,
+    "host_cpu_percent": 5.6,
+    "host_available_mb": 4046.62109375,
+    "generator_cpu_percent": 1.4,
+    "generator_rss_mb": 52.83203125,
+    "containers": [
+      {
+        "ID": "dd99c90a434b",
+        "Name": "hito12-g09-api-1",
+        "CPUPerc": "2.59%",
+        "MemUsage": "37.8MiB / 512MiB",
+        "MemPerc": "7.38%",
+        "NetIO": "9.8MB / 10.7MB",
+        "BlockIO": "0B / 0B",
+        "PIDs": "2"
+      },
+      {
+        "ID": "7cbb44ded8a3",
+        "Name": "hito12-g09-influxdb-1",
+        "CPUPerc": "14.69%",
+        "MemUsage": "128MiB / 2GiB",
+        "MemPerc": "6.25%",
+        "NetIO": "11.9MB / 178MB",
+        "BlockIO": "0B / 0B",
+        "PIDs": "11"
+      }
+    ]
+  },
+  {
+    "elapsed_s": 33.004528200021014,
+    "host_cpu_percent": 7.1,
+    "host_available_mb": 4043.890625,
+    "generator_cpu_percent": 1.0,
+    "generator_rss_mb": 50.8828125,
+    "containers": [
+      {
+        "ID": "dd99c90a434b",
+        "Name": "hito12-g09-api-1",
+        "CPUPerc": "2.90%",
+        "MemUsage": "37.78MiB / 512MiB",
+        "MemPerc": "7.38%",
+        "NetIO": "10.1MB / 11.1MB",
+        "BlockIO": "0B / 0B",
+        "PIDs": "2"
+      },
+      {
+        "ID": "7cbb44ded8a3",
+        "Name": "hito12-g09-influxdb-1",
+        "CPUPerc": "15.15%",
+        "MemUsage": "130.2MiB / 2GiB",
+        "MemPerc": "6.36%",
+        "NetIO": "12MB / 178MB",
+        "BlockIO": "0B / 0B",
+        "PIDs": "11"
+      }
+    ]
+  },
+  {
+    "elapsed_s": 37.07808790000854,
+    "host_cpu_percent": 9.0,
+    "host_available_mb": 3986.57421875,
+    "generator_cpu_percent": 2.3,
+    "generator_rss_mb": 51.5234375,
+    "containers": [
+      {
+        "ID": "dd99c90a434b",
+        "Name": "hito12-g09-api-1",
+        "CPUPerc": "2.66%",
+        "MemUsage": "37.84MiB / 512MiB",
+        "MemPerc": "7.39%",
+        "NetIO": "10.5MB / 11.5MB",
+        "BlockIO": "0B / 0B",
+        "PIDs": "2"
+      },
+      {
+        "ID": "7cbb44ded8a3",
+        "Name": "hito12-g09-influxdb-1",
+        "CPUPerc": "14.50%",
+        "MemUsage": "130.6MiB / 2GiB",
+        "MemPerc": "6.38%",
+        "NetIO": "12MB / 178MB",
+        "BlockIO": "0B / 0B",
+        "PIDs": "11"
+      }
+    ]
+  },
+  {
+    "elapsed_s": 41.097549900005106,
+    "host_cpu_percent": 9.0,
+    "host_available_mb": 4017.1015625,
+    "generator_cpu_percent": 1.9,
+    "generator_rss_mb": 51.6484375,
+    "containers": [
+      {
+        "ID": "dd99c90a434b",
+        "Name": "hito12-g09-api-1",
+        "CPUPerc": "2.72%",
+        "MemUsage": "37.79MiB / 512MiB",
+        "MemPerc": "7.38%",
+        "NetIO": "11MB / 12MB",
+        "BlockIO": "0B / 0B",
+        "PIDs": "2"
+      },
+      {
+        "ID": "7cbb44ded8a3",
+        "Name": "hito12-g09-influxdb-1",
+        "CPUPerc": "16.00%",
+        "MemUsage": "129.9MiB / 2GiB",
+        "MemPerc": "6.34%",
+        "NetIO": "12MB / 179MB",
+        "BlockIO": "0B / 0B",
+        "PIDs": "11"
+      }
+    ]
+  }
+]

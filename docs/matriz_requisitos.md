@@ -37,8 +37,24 @@ Fuente: consigna oficial de 18 páginas. **Preparado** significa que existe impl
 
 ## Estado de entrega
 
-- Código y documentación: preparados localmente.
-- Pruebas locales del software: ver `verificacion_local.md`.
-- Despliegue Docker, carga, rendimiento y validación de la base: pendientes en notebook.
-- Conclusión sobre la candidata: pendiente de los resultados.
-- Publicación de esta implementación y evidencia en GitHub: pendiente.
+- **Código y documentación:** implementados y disponibles en el repositorio local.
+- **Pruebas automáticas:** 47 pruebas aprobadas, con una advertencia de deprecación.
+- **Entorno Docker:** despliegue local verificado con API FastAPI e InfluxDB 3.12.2.
+- **Preparación de datos:** 51.840 registros sintéticos generados correctamente.
+- **Línea base:** ejecutada en tres repeticiones, con evidencia de latencias, throughput, errores y consumo de recursos.
+- **Optimización:** variante `pooled` ejecutada en tres repeticiones, conservando el escenario de carga.
+- **Comparación:** reducción del 57,89 % en latencia p95 y del 58,54 % en p99, sin errores y manteniendo 8 operaciones por segundo.
+- **Integridad:** validación final exitosa de los 51.840 registros.
+- **Conclusiones:** documentadas en `docs/conclusiones.md` y en el archivo `comparison.md` de la ejecución optimizada.
+- **Data Mart y comparación relacional:** propuestas documentadas; no se realizaron pruebas experimentales de estas alternativas.
+- **Publicación en GitHub:** pendiente de incorporar las evidencias y los documentos actualizados.
+- **Revisión final:** pendiente de verificar reproducibilidad, trazabilidad y ausencia de secretos antes de publicar.
+
+### Evidencia experimental
+
+- Preparación: `docs/evidencia/20261104T011338609443Z_preparacion/`
+- Línea base: `docs/evidencia/20261104T011554960995Z_baseline/`
+- Optimización y comparación: `docs/evidencia/20261104T012248028457Z_pooled/`
+- Integridad final: `docs/evidencia/20261104T012635878386Z_integridad/`
+
+**Resultado general:** la evaluación experimental se completó correctamente en el entorno local. La optimización produjo mejoras de latencia verificables sin afectar la integridad de los datos. Quedan pendientes las comprobaciones finales de documentación y publicación en GitHub.

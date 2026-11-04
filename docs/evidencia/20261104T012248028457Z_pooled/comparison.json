@@ -1,0 +1,278 @@
+{
+  "comparable": true,
+  "metrics": [
+    {
+      "metric": "Latencia p50",
+      "unit": "ms",
+      "baseline_median": 44.861550006316975,
+      "baseline_min": 39.91245001088828,
+      "baseline_max": 45.515699981478974,
+      "pooled_median": 20.841349993133917,
+      "pooled_min": 20.818450022488832,
+      "pooled_max": 21.335900033591315,
+      "change_percent": -53.54295607218378
+    },
+    {
+      "metric": "Latencia p90",
+      "unit": "ms",
+      "baseline_median": 52.3524300137069,
+      "baseline_min": 44.3101700162515,
+      "baseline_max": 52.575430006254464,
+      "pooled_median": 23.105919978115708,
+      "pooled_min": 23.090690013486892,
+      "pooled_max": 24.307390017202124,
+      "change_percent": -55.86466574318304
+    },
+    {
+      "metric": "Latencia p95",
+      "unit": "ms",
+      "baseline_median": 57.916419996763565,
+      "baseline_min": 50.88982997112906,
+      "baseline_max": 58.22980000521055,
+      "pooled_median": 24.386015042546198,
+      "pooled_min": 24.346350028645247,
+      "pooled_max": 25.461610013735477,
+      "change_percent": -57.894470956753
+    },
+    {
+      "metric": "Latencia p99",
+      "unit": "ms",
+      "baseline_median": 64.51497502042909,
+      "baseline_min": 56.383506981655906,
+      "baseline_max": 67.61069201980717,
+      "pooled_median": 26.745464975829236,
+      "pooled_min": 25.80801798962056,
+      "pooled_max": 30.598909007967414,
+      "change_percent": -58.54378775259526
+    },
+    {
+      "metric": "Latencia media",
+      "unit": "ms",
+      "baseline_median": 46.214438335543186,
+      "baseline_min": 41.05641166509789,
+      "baseline_max": 46.861137918070504,
+      "pooled_median": 21.324131665945362,
+      "pooled_min": 21.16910958405545,
+      "pooled_max": 21.71953416861167,
+      "change_percent": -53.858290971492494
+    },
+    {
+      "metric": "Latencia exitosa p95",
+      "unit": "ms",
+      "baseline_median": 57.916419996763565,
+      "baseline_min": 50.88982997112906,
+      "baseline_max": 58.22980000521055,
+      "pooled_median": 24.386015042546198,
+      "pooled_min": 24.346350028645247,
+      "pooled_max": 25.461610013735477,
+      "change_percent": -57.894470956753
+    },
+    {
+      "metric": "Latencia exitosa p99",
+      "unit": "ms",
+      "baseline_median": 64.51497502042909,
+      "baseline_min": 56.383506981655906,
+      "baseline_max": 67.61069201980717,
+      "pooled_median": 26.745464975829236,
+      "pooled_min": 25.80801798962056,
+      "pooled_max": 30.598909007967414,
+      "change_percent": -58.54378775259526
+    },
+    {
+      "metric": "API p95",
+      "unit": "ms",
+      "baseline_median": 54.93133069999998,
+      "baseline_min": 48.512325499999996,
+      "baseline_max": 55.58016094999999,
+      "pooled_median": 21.5242141,
+      "pooled_min": 21.42260804999999,
+      "pooled_max": 22.878907549999997,
+      "change_percent": -60.81614294481308
+    },
+    {
+      "metric": "Llamada al motor p95",
+      "unit": "ms",
+      "baseline_median": 46.94674074999999,
+      "baseline_min": 40.07607914999999,
+      "baseline_max": 47.747472699999996,
+      "pooled_median": 19.89520635,
+      "pooled_min": 19.368322799999998,
+      "pooled_max": 20.52491305,
+      "change_percent": -57.621751729378566
+    },
+    {
+      "metric": "Throughput exitoso",
+      "unit": "op/s",
+      "baseline_median": 8.0,
+      "baseline_min": 8.0,
+      "baseline_max": 8.0,
+      "pooled_median": 8.0,
+      "pooled_min": 8.0,
+      "pooled_max": 8.0,
+      "change_percent": 0.0
+    },
+    {
+      "metric": "Operaciones completadas",
+      "unit": "operaciones",
+      "baseline_median": 240,
+      "baseline_min": 240,
+      "baseline_max": 240,
+      "pooled_median": 240,
+      "pooled_min": 240,
+      "pooled_max": 240,
+      "change_percent": 0.0
+    },
+    {
+      "metric": "Operaciones exitosas",
+      "unit": "operaciones",
+      "baseline_median": 240,
+      "baseline_min": 240,
+      "baseline_max": 240,
+      "pooled_median": 240,
+      "pooled_min": 240,
+      "pooled_max": 240,
+      "change_percent": 0.0
+    },
+    {
+      "metric": "Errores",
+      "unit": "operaciones",
+      "baseline_median": 0,
+      "baseline_min": 0,
+      "baseline_max": 0,
+      "pooled_median": 0,
+      "pooled_min": 0,
+      "pooled_max": 0,
+      "change_percent": null
+    },
+    {
+      "metric": "Fracción de errores",
+      "unit": "fracción",
+      "baseline_median": 0.0,
+      "baseline_min": 0.0,
+      "baseline_max": 0.0,
+      "pooled_median": 0.0,
+      "pooled_min": 0.0,
+      "pooled_max": 0.0,
+      "change_percent": null
+    },
+    {
+      "metric": "No enviadas",
+      "unit": "operaciones",
+      "baseline_median": 0,
+      "baseline_min": 0,
+      "baseline_max": 0,
+      "pooled_median": 0,
+      "pooled_min": 0,
+      "pooled_max": 0,
+      "change_percent": null
+    },
+    {
+      "metric": "Atraso de despacho p95",
+      "unit": "ms",
+      "baseline_median": 14.970404998166485,
+      "baseline_min": 14.965745003428307,
+      "baseline_max": 15.568664998863822,
+      "pooled_median": 15.409860032377765,
+      "pooled_min": 15.268340019974858,
+      "pooled_max": 15.548929973738264,
+      "change_percent": 2.9354919540593754
+    },
+    {
+      "metric": "Validación del cliente p95",
+      "unit": "ms",
+      "baseline_median": 2.0024899975396693,
+      "baseline_min": 1.6767549590440465,
+      "baseline_max": 2.1961949969409025,
+      "pooled_median": 1.680849975673481,
+      "pooled_min": 1.6657649917760862,
+      "pooled_max": 1.7908550129504874,
+      "change_percent": -16.06200391819019
+    }
+  ],
+  "resources": [
+    {
+      "mode": "baseline",
+      "trial": 1,
+      "samples": 12,
+      "host_cpu_max_percent": 11.2,
+      "host_memory_min_available_mb": 4785.953125,
+      "generator_cpu_max_percent": 2.3,
+      "generator_rss_max_mb": 47.94921875,
+      "api_cpu_max_percent": 19.83,
+      "api_memory_max_percent": 10.99,
+      "influxdb_cpu_max_percent": 16.67,
+      "influxdb_memory_max_percent": 5.91
+    },
+    {
+      "mode": "baseline",
+      "trial": 2,
+      "samples": 12,
+      "host_cpu_max_percent": 30.2,
+      "host_memory_min_available_mb": 2987.01171875,
+      "generator_cpu_max_percent": 3.8,
+      "generator_rss_max_mb": 51.75390625,
+      "api_cpu_max_percent": 23.01,
+      "api_memory_max_percent": 10.96,
+      "influxdb_cpu_max_percent": 18.15,
+      "influxdb_memory_max_percent": 5.85
+    },
+    {
+      "mode": "baseline",
+      "trial": 3,
+      "samples": 12,
+      "host_cpu_max_percent": 25.7,
+      "host_memory_min_available_mb": 3557.16015625,
+      "generator_cpu_max_percent": 2.3,
+      "generator_rss_max_mb": 52.47265625,
+      "api_cpu_max_percent": 22.71,
+      "api_memory_max_percent": 10.98,
+      "influxdb_cpu_max_percent": 18.23,
+      "influxdb_memory_max_percent": 5.88
+    },
+    {
+      "mode": "pooled",
+      "trial": 1,
+      "samples": 12,
+      "host_cpu_max_percent": 10.8,
+      "host_memory_min_available_mb": 3293.91796875,
+      "generator_cpu_max_percent": 2.7,
+      "generator_rss_max_mb": 48.03125,
+      "api_cpu_max_percent": 3.15,
+      "api_memory_max_percent": 7.35,
+      "influxdb_cpu_max_percent": 16.55,
+      "influxdb_memory_max_percent": 6.45
+    },
+    {
+      "mode": "pooled",
+      "trial": 2,
+      "samples": 12,
+      "host_cpu_max_percent": 12.1,
+      "host_memory_min_available_mb": 3668.078125,
+      "generator_cpu_max_percent": 1.6,
+      "generator_rss_max_mb": 51.39453125,
+      "api_cpu_max_percent": 2.91,
+      "api_memory_max_percent": 7.4,
+      "influxdb_cpu_max_percent": 17.08,
+      "influxdb_memory_max_percent": 6.57
+    },
+    {
+      "mode": "pooled",
+      "trial": 3,
+      "samples": 12,
+      "host_cpu_max_percent": 11.4,
+      "host_memory_min_available_mb": 3986.57421875,
+      "generator_cpu_max_percent": 2.7,
+      "generator_rss_max_mb": 52.84375,
+      "api_cpu_max_percent": 3.07,
+      "api_memory_max_percent": 7.39,
+      "influxdb_cpu_max_percent": 16.28,
+      "influxdb_memory_max_percent": 6.43
+    }
+  ],
+  "warnings": [
+    "Menos de 1000 respuestas exitosas en alguna repetición: el 1% superior contiene menos de 10 observaciones; interpretar p99 con cautela. Este umbral es orientativo, no una garantía estadística.",
+    "Tasa de llegada acotada: el throughput observado no demuestra capacidad máxima.",
+    "Orden baseline→pooled; cachés del motor, carga externa y deriva térmica pueden influir."
+  ],
+  "interpretation": "Cambios medidos; una variación porcentual no implica significación estadística."
+}

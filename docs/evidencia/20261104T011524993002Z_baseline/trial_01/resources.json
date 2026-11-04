@@ -1,0 +1,89 @@
+[
+  {
+    "elapsed_s": 0.0016694000223651528,
+    "host_cpu_percent": 0.0,
+    "host_available_mb": 4934.4609375,
+    "generator_cpu_percent": 0.0,
+    "generator_rss_mb": 47.91796875,
+    "containers": [
+      {
+        "ID": "17c7bfdc6d7e",
+        "Name": "hito12-g09-api-1",
+        "CPUPerc": "0.11%",
+        "MemUsage": "38.91MiB / 512MiB",
+        "MemPerc": "7.60%",
+        "NetIO": "14.3kB / 16.1kB",
+        "BlockIO": "0B / 0B",
+        "PIDs": "2"
+      },
+      {
+        "ID": "7cbb44ded8a3",
+        "Name": "hito12-g09-influxdb-1",
+        "CPUPerc": "1.93%",
+        "MemUsage": "118.2MiB / 2GiB",
+        "MemPerc": "5.77%",
+        "NetIO": "9.08MB / 39.4MB",
+        "BlockIO": "0B / 0B",
+        "PIDs": "11"
+      }
+    ]
+  },
+  {
+    "elapsed_s": 4.075112599995919,
+    "host_cpu_percent": 9.3,
+    "host_available_mb": 5031.3203125,
+    "generator_cpu_percent": 0.0,
+    "generator_rss_mb": 48.01171875,
+    "containers": [
+      {
+        "ID": "17c7bfdc6d7e",
+        "Name": "hito12-g09-api-1",
+        "CPUPerc": "2.33%",
+        "MemUsage": "39.27MiB / 512MiB",
+        "MemPerc": "7.67%",
+        "NetIO": "31.1kB / 36.7kB",
+        "BlockIO": "0B / 0B",
+        "PIDs": "2"
+      },
+      {
+        "ID": "7cbb44ded8a3",
+        "Name": "hito12-g09-influxdb-1",
+        "CPUPerc": "2.19%",
+        "MemUsage": "116.2MiB / 2GiB",
+        "MemPerc": "5.67%",
+        "NetIO": "9.08MB / 39.4MB",
+        "BlockIO": "0B / 0B",
+        "PIDs": "11"
+      }
+    ]
+  },
+  {
+    "elapsed_s": 7.152421200007666,
+    "host_cpu_percent": 8.5,
+    "host_available_mb": 4985.3359375,
+    "generator_cpu_percent": 0.5,
+    "generator_rss_mb": 48.015625,
+    "containers": [
+      {
+        "ID": "17c7bfdc6d7e",
+        "Name": "hito12-g09-api-1",
+        "CPUPerc": "0.10%",
+        "MemUsage": "40.64MiB / 512MiB",
+        "MemPerc": "7.94%",
+        "NetIO": "41.8kB / 49.8kB",
+        "BlockIO": "0B / 0B",
+        "PIDs": "2"
+      },
+      {
+        "ID": "7cbb44ded8a3",
+        "Name": "hito12-g09-influxdb-1",
+        "CPUPerc": "0.13%",
+        "MemUsage": "115.7MiB / 2GiB",
+        "MemPerc": "5.65%",
+        "NetIO": "9.09MB / 39.4MB",
+        "BlockIO": "0B / 0B",
+        "PIDs": "11"
+      }
+    ]
+  }
+]
